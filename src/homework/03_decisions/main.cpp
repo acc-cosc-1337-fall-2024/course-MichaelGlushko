@@ -22,6 +22,7 @@ int main()
 
 		letter_grade = get_letter_grade_using_if(grade);
 		cout<<letter_grade<<"\n";
+		main();
 	}
 	else if(menu_input == 2)
 	{
@@ -30,6 +31,7 @@ int main()
 
 		letter_grade = get_letter_grade_using_switch(grade);
 		cout<<letter_grade<<"\n";
+		main();
 	}
 	else if(menu_input == 3)
 	{

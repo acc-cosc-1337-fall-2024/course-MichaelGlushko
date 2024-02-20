@@ -31,7 +31,7 @@ int get_letter_grade_using_if(int grade)
     }
     else
     {
-        cout<<"Not within a valid range";
+        cout<<"Not within a valid range\n";
     }
     return letter_grade;
 }
@@ -58,7 +58,7 @@ int get_letter_grade_using_switch(int grade)
             letter_grade = 'A';
             break;
         default:
-            cout<<"Not within a valid range.";   
+            cout<<"Not within a valid range.\n";   
     }
     return letter_grade;
 }
