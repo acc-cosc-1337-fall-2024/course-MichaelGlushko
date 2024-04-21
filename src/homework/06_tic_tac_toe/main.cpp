@@ -1,11 +1,13 @@
 #include "tic_tac_toe.h"
 #include "tic_tac_toe_manager.h"
+#include "tic_tac_toe_3.h"
+#include "tic_tac_toe_4.h"
 using std::cin;
 using std::cout;
 
 int main() 
 {
-	TicTacToe game;
+	std::unique_ptr<TicTacToe> game;
 	TicTacToeManager manager;
 	string player1;
 	char choice;
@@ -17,17 +19,31 @@ int main()
 	do {
 		cout<<"Player 1 choose 'X' or 'O': ";
 		cin>>player1;
+		int game_size;
 
-		game.start_game(player1);
+		do {
+			
+			cout<<"Enter a game size (3 for 3x3 board or 4 for 4x4 board)\n";
+			cin>>game_size;
+			if (game_size == 3) {
+				game = std::make_unique<TicTacToe3>();
+			} else if (game_size == 4) {
+				game = std::make_unique<TicTacToe4>();
+			} else {
+				cout<<"Invalid game size.\n";
+			}
+		}while(game_size != 3 && game_size != 4);
 
-		while (!game.game_over()) {
+		game->start_game(player1);
+
+		while (!game->game_over()) {
             int position;
             std::cout << "Enter position (1-9): ";
             std::cin >> position;
-            game.mark_board(position);
-            game.display_board();
+            game->mark_board(position);
+            game->display_board();
         }
-		winner = game.get_winner();
+		winner = game->get_winner();
 		if (winner == "C") {
 			cout << "It's a tie\n";
 		} else {
@@ -49,3 +65,4 @@ int main()
 
 	return 0;
 }
+
